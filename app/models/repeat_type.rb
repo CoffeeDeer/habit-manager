@@ -1,0 +1,2 @@
+class RepeatType < ApplicationRecord
+end

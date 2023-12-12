@@ -10,5 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_12_170020) do
+  create_table "habit_types", force: :cascade do |t|
+    t.string "title"
+    t.integer "repeat_type_id", null: false
+    t.string "repeat_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["repeat_type_id"], name: "index_habit_types_on_repeat_type_id"
+  end
+
+  create_table "habits", force: :cascade do |t|
+    t.integer "habit_type_id", null: false
+    t.boolean "is_completed"
+    t.date "target_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["habit_type_id"], name: "index_habits_on_habit_type_id"
+  end
+
+  create_table "repeat_types", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "habit_types", "repeat_types"
+  add_foreign_key "habits", "habit_types"
 end

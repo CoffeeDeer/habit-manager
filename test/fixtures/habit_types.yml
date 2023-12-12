@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  repeat_type: one
+  repeat_value: MyString
+
+two:
+  title: MyString
+  repeat_type: two
+  repeat_value: MyString
