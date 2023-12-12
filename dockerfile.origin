@@ -1,0 +1,13 @@
+FROM ruby:3.0.2-alpine3.14
+
+# https://pkgs.alpinelinux.org/packages?name=nodejs&branch=v3.14
+# node v14.21.3 install される
+RUN apk add --update alpine-sdk nodejs ㅛㅁㄱ 
+RUN gem install rails
+
+#COPY /blog/Gemfile /usr/app/blog/Gemfile
+#COPY /blog/Gemfile.lock /usr/app/blog/Gemfile.lock
+
+WORKDIR /usr/app
+#RUN bundle install
+

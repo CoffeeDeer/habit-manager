@@ -1,0 +1,30 @@
+{
+  "name": "rails",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoffeeDeer/habit-manager.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "esbuild": "^0.19.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "bugs": {
+    "url": "https://github.com/CoffeeDeer/habit-manager/issues"
+  },
+  "homepage": "https://github.com/CoffeeDeer/habit-manager#readme"
+}
