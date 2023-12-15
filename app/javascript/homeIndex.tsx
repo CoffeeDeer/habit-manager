@@ -1,13 +1,15 @@
 import { HelloReact } from './HelloReact'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { AppContainer } from './AppContainer'
 
-export const PostIndex = () => {
+export const HomeIndex = () => {
     return (
-        <>
+        <AppContainer>
             <HelloReact />
-        </>
+        </AppContainer>
     )
 }
 
-ReactDOM.render(<PostIndex />, document.getElementById('homeIndex'))
+// DOM Renderがここにいる必要があるのか
+ReactDOM.render(<HomeIndex />, document.getElementById('root'))
