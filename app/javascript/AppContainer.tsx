@@ -1,6 +1,6 @@
 // Entry point for the build script in your package.json
 import React, { ReactNode } from 'react'
-import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 const root = document.getElementById('root')
 if (!root) {
@@ -12,5 +12,9 @@ type props = {
 }
 
 export const AppContainer = ({ children }: props) => {
-    return <React.StrictMode>{children}</React.StrictMode>
+    return (
+        <React.StrictMode>
+            <BrowserRouter>{children}</BrowserRouter>
+        </React.StrictMode>
+    )
 }
