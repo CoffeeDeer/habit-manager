@@ -1,15 +1,50 @@
-import { HelloReact } from './HelloReact'
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React, { useState } from 'react'
+import { createRoot } from 'react-dom/client'
+
 import { AppContainer } from './AppContainer'
 
-export const HomeIndex = () => {
+type Todo = {
+    id: string
+    name: string
+    is_completed: boolean
+}
+
+//TODO: module
+const mountNode = document.getElementById('resources-container')
+const initialValues: Todo[] = JSON.parse(mountNode?.getAttribute('data') ?? '{}')
+
+export const HomeIndex = ({ initialValues }: { initialValues: Todo[] }) => {
+    const [todoList, setTodoList] = useState(initialValues)
     return (
         <AppContainer>
-            <HelloReact />
+            {todoList.map((todo) => {
+                return (
+                    <div key={todo.id}>
+                        <input
+                            type="checkbox"
+                            id={todo.id}
+                            name={todo.name}
+                            checked={todo.is_completed}
+                            onChange={(event) => {
+                                const targetId = todo.id
+                                setTodoList((prev) =>
+                                    prev.map((todo) =>
+                                        todo.id === targetId
+                                            ? {
+                                                  ...todo,
+                                                  is_completed: event.target.checked,
+                                              }
+                                            : todo
+                                    )
+                                )
+                            }}
+                        />
+                        <label htmlFor={todo.id}>{todo.name}</label>
+                    </div>
+                )
+            })}
         </AppContainer>
     )
 }
 
-// DOM Renderがここにいる必要があるのか
-ReactDOM.render(<HomeIndex />, document.getElementById('root'))
+createRoot(document.getElementById('root')!).render(<HomeIndex initialValues={initialValues} />)

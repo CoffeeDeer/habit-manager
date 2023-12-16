@@ -1,23 +1,9 @@
-<h1>todos#index</h1>
-<p>Find me in app/views/todos/index.html.erb</p>
 
-
-<div class="ly_container">
-    <div class="card mt-30">
-        <div class="de-top">
-            <p><strong>Todos#index</strong></p>
-        </div>
-    </div>
-    <div id="homeIndex"></div>
-    <%= javascript_include_tag "homeIndex", defer: true %>
-</div>
-
-
+<%= javascript_include_tag "homeIndex", defer: true %>
 <%= content_tag :div,
                 id: "resources-container",
                 data: @todos.to_json do %>
 <% end %>
-
 
 <script language="javascript" type="text/javascript">
 </script>
