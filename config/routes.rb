@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  get 'todos', to: 'todos#index'
-  get 'todos/new', to: 'todos#index'
-  get 'todos/:id/edit', to: 'todos#index'
+  get 'todos', to: 'home#index'
+  get 'todos/new', to: 'home#index'
+  get 'todos/:id/edit', to: 'home#index'
 
-
+  resources :todos, path: '/api/v1/todos' 
   # Defines the root path route ("/")
   root to: redirect('/todos')
 end

@@ -46,7 +46,7 @@ const Wrapper = styled.div`
 const mountNode = document.getElementById('resources-container')
 const initialValues: Todo[] = JSON.parse(mountNode?.getAttribute('data') ?? '{}')
 
-export const HomeIndex = ({ initialValues }: { initialValues: Todo[] }) => {
+export const HomeIndex = () => {
     return (
         <AppContainer>
             <>
@@ -63,7 +63,7 @@ export const HomeIndex = ({ initialValues }: { initialValues: Todo[] }) => {
                 </Nabvar>
                 <Wrapper>
                     <Routes>
-                        <Route path="/todos" element={<TodoList initialValues={initialValues} />} />
+                        <Route path="/todos" element={<TodoList />} />
                     </Routes>
                 </Wrapper>
             </>
@@ -71,4 +71,4 @@ export const HomeIndex = ({ initialValues }: { initialValues: Todo[] }) => {
     )
 }
 
-createRoot(document.getElementById('root')!).render(<HomeIndex initialValues={initialValues} />)
+createRoot(document.getElementById('root')!).render(<HomeIndex />)

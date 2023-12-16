@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import useSWR, { mutate } from 'swr'
 
 import styled from 'styled-components'
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im'
@@ -66,9 +67,15 @@ export type Todo = {
     is_completed: boolean
 }
 
-export const TodoList = ({ initialValues }: { initialValues: Todo[] }) => {
-    const [todoList, setTodoList] = useState<Todo[]>(initialValues)
+export const TodoList = () => {
+    const [todoList, setTodoList] = useState<Todo[]>([])
     const [searchName, setSearchName] = useState('')
+
+    const { data, mutate } = useSWR<Todo[]>('/api/v1/todos', (url) => fetch(url).then((r) => r.json()))
+
+    useEffect(() => {
+        data ? setTodoList(data) : null
+    }, [data])
 
     const removeAllTodos = () => {
         const sure = window.confirm('Are you sure?')
@@ -93,17 +100,23 @@ export const TodoList = ({ initialValues }: { initialValues: Todo[] }) => {
             is_completed: !val.is_completed,
         }
 
-        // TODO: SWR
-        setTodoList((prev) =>
-            prev.map((todo) => (todo.id === val.id ? { ...todo, is_completed: data.is_completed } : todo))
-        )
-        /*
-        axios.patch(`/api/v1/todos/${val.id}`, data).then((resp) => {
-            const newTodos = [...todos]
-            newTodos[index].is_completed = resp.data.is_completed
-            setTodos(newTodos)
-        })
-        */
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        }
+
+        fetch(`/api/v1/todos/${val.id}`, requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+                const updatedTodoList = todoList.map((todo) =>
+                    todo.id === val.id ? { ...todo, is_completed: data.is_completed } : todo
+                )
+                mutate(updatedTodoList)
+            })
+            .catch(() => {
+                alert('更新失敗')
+            })
     }
 
     return (
