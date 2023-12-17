@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im'
 import { AiFillEdit } from 'react-icons/ai'
 
+import { Todo } from './types'
+
 const SearchAndButton = styled.div`
     display: flex;
     justify-content: space-between;
@@ -18,19 +20,6 @@ const SearchForm = styled.input`
     height: 40px;
     margin: 10px 0;
     padding: 10px;
-`
-
-const RemoveAllButton = styled.button`
-    width: 16%;
-    height: 40px;
-    background: #f54242;
-    border: none;
-    font-weight: 500;
-    margin-left: 10px;
-    padding: 5px 10px;
-    border-radius: 3px;
-    color: #fff;
-    cursor: pointer;
 `
 
 const TodoName = styled.span<{ $is_completed: boolean }>`
@@ -61,12 +50,6 @@ const EditButton = styled.span`
     margin: 0 7px;
 `
 
-export type Todo = {
-    id: string
-    name: string
-    is_completed: boolean
-}
-
 export const TodoList = () => {
     const [todoList, setTodoList] = useState<Todo[]>([])
     const [searchName, setSearchName] = useState('')
@@ -76,22 +59,6 @@ export const TodoList = () => {
     useEffect(() => {
         data ? setTodoList(data) : null
     }, [data])
-
-    const removeAllTodos = () => {
-        const sure = window.confirm('Are you sure?')
-        if (sure) {
-            /*
-            axios
-                .delete('/api/v1/todos/destroy_all')
-                .then((resp) => {
-                    setTodos([])
-                })
-                .catch((e) => {
-                    console.log(e)
-                })
-            */
-        }
-    }
 
     const updateIsCompleted = (index, val: Todo) => {
         var data = {
@@ -133,7 +100,6 @@ export const TodoList = () => {
                         setSearchName(event.target.value)
                     }}
                 />
-                <RemoveAllButton onClick={removeAllTodos}>Remove All</RemoveAllButton>
             </SearchAndButton>
 
             <div>

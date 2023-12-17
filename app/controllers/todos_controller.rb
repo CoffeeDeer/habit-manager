@@ -5,8 +5,8 @@ class TodosController < ApplicationController
     end
 
     def show
-        todo = Todo.find(params[:id])
-        render json: todo
+        @todo = Todo.find(params[:id])
+        render json: @todo
     end
     
 
@@ -20,11 +20,11 @@ class TodosController < ApplicationController
     end
     
     def update
-        todo = Todo.find(params[:id])
-        if todo.update(todo_params)
-            render json: todo
+        @todo = Todo.find(params[:id])
+        if @todo.update(todo_params)
+            render json: @todo
         else
-            render json: todo.errors, status: 422
+            render json: @todo.errors, status: 422
         end
     end
 
@@ -35,4 +35,9 @@ class TodosController < ApplicationController
             render json: { error: "Failed to destroy" }, status: 422
         end
     end
+
+    private
+        def todo_params
+            params.require(:todo).permit(:name, :is_completed)
+        end
 end

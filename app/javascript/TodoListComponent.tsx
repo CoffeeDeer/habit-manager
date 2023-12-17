@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Route, Routes, Link } from 'react-router-dom'
+import { Route, Routes, Link, createBrowserRouter, Outlet } from 'react-router-dom'
 import { AppContainer } from './AppContainer'
 import styled from 'styled-components'
-import { Todo, TodoList } from './TodoList/Components'
+import { EditTodo, Todo, TodoList } from './TodoList'
+
+import { BrowserRouter } from 'react-router-dom'
 
 const Nabvar = styled.nav`
     background: #dbfffe;
@@ -42,10 +44,6 @@ const Wrapper = styled.div`
     margin: 20px auto;
 `
 
-//TODO: module
-const mountNode = document.getElementById('resources-container')
-const initialValues: Todo[] = JSON.parse(mountNode?.getAttribute('data') ?? '{}')
-
 export const HomeIndex = () => {
     return (
         <AppContainer>
@@ -63,7 +61,11 @@ export const HomeIndex = () => {
                 </Nabvar>
                 <Wrapper>
                     <Routes>
-                        <Route path="/todos" element={<TodoList />} />
+                        <Route path="about" element={<TodoList />} />
+                        <Route path="todos">
+                            <Route index element={<TodoList />} />
+                            <Route path=":id/edit" element={<EditTodo />} />
+                        </Route>
                     </Routes>
                 </Wrapper>
             </>
