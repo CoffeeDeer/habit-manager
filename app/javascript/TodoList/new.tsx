@@ -96,7 +96,7 @@ export const NewTodo = () => {
 
     return (
         <>
-            <h1>Editing Todo</h1>
+            <h1>Add New Todo</h1>
             <div>
                 <div>
                     <label htmlFor="name">Current Name</label>
@@ -117,7 +117,7 @@ export const NewTodo = () => {
                         Save
                     </SaveButton>
                     <DeleteButton className="badge badge-danger mr-2" onClick={cancelCreate}>
-                        cancel
+                        Cancel
                     </DeleteButton>
                 </div>
             </div>
