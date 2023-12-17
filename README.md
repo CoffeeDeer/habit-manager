@@ -1,24 +1,49 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 実行方法
 
-Things you may want to cover:
+``` docker
+docker-compose up
+```
 
-* Ruby version
+## ローカルページ
 
-* System dependencies
+```
+127.0.0.1:3000
+```
 
-* Configuration
+## 機能紹介
 
-* Database creation
+### TodoList
+<img width="619" alt="스크린샷 2023-12-18 오전 2 09 46" src="https://github.com/CoffeeDeer/habit-manager/assets/11609005/86ef764c-fe36-4ad1-b95c-c793e9678522">
 
-* Database initialization
+---
 
-* How to run the test suite
+### Update Item
 
-* Services (job queues, cache servers, search engines, etc.)
+<img width="585" alt="스크린샷 2023-12-18 오전 2 09 55" src="https://github.com/CoffeeDeer/habit-manager/assets/11609005/8cd14eb0-ff1d-48a2-9bb0-03e90680afcd">
 
-* Deployment instructions
+---
 
-* ...
+### Add New Item
+
+<img width="622" alt="스크린샷 2023-12-18 오전 2 23 22" src="https://github.com/CoffeeDeer/habit-manager/assets/11609005/a341e86d-c21d-4bda-9f17-d3229146f9bc">
+
+---
+
+## TODO 
+
+- 機能実装を優先していたため、quailityが落ちている
+    - test Code 作成（RSpec）
+    - reactのコード整理
+    - railsのBestPracticeの試し
+
+## ETC
+- rails version: 7
+- ruby version: 3.0.2
+
+
+## 参考にしてるサイト
+
+- [rails6 + react](https://hackmd.io/KDMj08X7QIqkTcs37rEWBQ?view#React-on-Rails)
+- 
