@@ -7,8 +7,6 @@ import styled from 'styled-components'
 import { toast } from 'react-toastify'
 //import 'react-toastify/dist/ReactToastify.css'
 
-import useSWR, { mutate } from 'swr'
-
 const InputName = styled.input`
     font-size: 20px;
     width: 100%;
@@ -21,17 +19,6 @@ const CurrentStatus = styled.span`
     font-size: 19px;
     margin: 8px 12px 12px 0;
     font-weight: bold;
-`
-
-const IsCompletedButton = styled.button`
-    color: #fff;
-    font-weight: 500;
-    font-size: 17px;
-    padding: 5px 10px;
-    background: #f2a115;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
 `
 
 const SaveButton = styled.button`
@@ -66,23 +53,14 @@ const requestOptions = {
     body: undefined,
 }
 
-export const EditTodo = () => {
-    const { id } = useParams()
+export const NewTodo = () => {
     const navigate = useNavigate()
 
     const [currentTodo, setCurrentTodo] = useState<Todo>({
-        id: id ?? undefined,
+        id: undefined,
         name: '',
         is_completed: false,
     })
-
-    const { data } = useSWR<Todo>(`/api/v1/todos/${id}`, (url) => fetch(url).then((r) => r.json()))
-
-    useEffect(() => {
-        if (data) {
-            setCurrentTodo(data)
-        }
-    }, [data])
 
     const notify = () => {
         toast.success('Todo successfully updated!', {
@@ -96,9 +74,9 @@ export const EditTodo = () => {
         setCurrentTodo({ ...currentTodo, [name]: value })
     }
 
-    const updateTodo = () => {
+    const createTodo = () => {
         // TODO: to function
-        fetch(`/api/v1/todos/${id}`, { ...requestOptions, method: 'PUT', body: JSON.stringify(currentTodo) })
+        fetch(`/api/v1/todos`, { ...requestOptions, method: 'POST', body: JSON.stringify(currentTodo) })
             .then((response) => response.json())
             .then((data) => {
                 notify()
@@ -109,17 +87,10 @@ export const EditTodo = () => {
             })
     }
 
-    const deleteTodo = () => {
+    const cancelCreate = () => {
         const sure = window.confirm('Are you sure?')
         if (sure) {
-            // TODO: to function
-            fetch(`/api/v1/todos/${id}`, { ...requestOptions, method: 'DELETE' })
-                .then((response) => {
-                    navigate('/todos')
-                })
-                .catch(() => {
-                    alert('更新失敗')
-                })
+            navigate('/todos')
         }
     }
 
@@ -139,38 +110,14 @@ export const EditTodo = () => {
                     <div>
                         <span>CurrentStatus: </span>
                         <CurrentStatus>{currentTodo.is_completed ? 'Completed' : 'UnCompleted'}</CurrentStatus>
-
-                        {currentTodo.is_completed ? (
-                            <IsCompletedButton
-                                className="badge badge-primary mr-2"
-                                onClick={() =>
-                                    setCurrentTodo((prev) => {
-                                        return { ...prev, is_completed: !prev.is_completed }
-                                    })
-                                }
-                            >
-                                Change To UnCompleted
-                            </IsCompletedButton>
-                        ) : (
-                            <IsCompletedButton
-                                className="badge badge-primary mr-2"
-                                onClick={() =>
-                                    setCurrentTodo((prev) => {
-                                        return { ...prev, is_completed: !prev.is_completed }
-                                    })
-                                }
-                            >
-                                Change To Completed
-                            </IsCompletedButton>
-                        )}
                     </div>
                 </div>
                 <div style={{ marginTop: '50px' }}>
-                    <SaveButton type="submit" onClick={updateTodo}>
+                    <SaveButton type="submit" onClick={createTodo}>
                         Save
                     </SaveButton>
-                    <DeleteButton className="badge badge-danger mr-2" onClick={deleteTodo}>
-                        Delete
+                    <DeleteButton className="badge badge-danger mr-2" onClick={cancelCreate}>
+                        cancel
                     </DeleteButton>
                 </div>
             </div>

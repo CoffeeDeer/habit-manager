@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { Route, Routes, Link, createBrowserRouter, Outlet } from 'react-router-dom'
+import { Route, Routes, Link } from 'react-router-dom'
 import { AppContainer } from './AppContainer'
 import styled from 'styled-components'
-import { EditTodo, Todo, TodoList } from './TodoList'
-
-import { BrowserRouter } from 'react-router-dom'
+import { EditTodo, TodoList, NewTodo } from './TodoList'
 
 const Nabvar = styled.nav`
     background: #dbfffe;
@@ -64,6 +62,7 @@ export const HomeIndex = () => {
                         <Route path="about" element={<TodoList />} />
                         <Route path="todos">
                             <Route index element={<TodoList />} />
+                            <Route path="new" element={<NewTodo />} />
                             <Route path=":id/edit" element={<EditTodo />} />
                         </Route>
                     </Routes>
