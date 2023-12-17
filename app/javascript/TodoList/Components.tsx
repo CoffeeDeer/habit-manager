@@ -102,7 +102,10 @@ export const TodoList = () => {
 
         const requestOptions = {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': document.head.querySelector('meta[name=csrf-token]')?.getAttribute('content') ?? '',
+            },
             body: JSON.stringify(data),
         }
 
