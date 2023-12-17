@@ -45,5 +45,5 @@ docker-compose up
 
 ## 参考にしてるサイト
 
-- [rails6 + react](https://hackmd.io/KDMj08X7QIqkTcs37rEWBQ?view#React-on-Rails)
-- 
+- [rails6 + react + Todolist](https://hackmd.io/KDMj08X7QIqkTcs37rEWBQ?view#React-on-Rails)
+- [Rails + TypeScript + React 開発環境構築](https://qiita.com/Hayato-7812/items/115312f0e6cfaac30c77)
