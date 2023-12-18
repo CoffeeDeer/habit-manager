@@ -1,4 +1,7 @@
 # README
+## what is this?
+
+Todo List(for rails training)　
 
 ## 実行方法
 
