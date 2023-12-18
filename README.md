@@ -15,6 +15,25 @@ docker-compose up
 127.0.0.1:3000
 ```
 
+## TODO 
+
+- 機能実装を優先していたため、quailityが落ちている
+    - test Code 作成（RSpec）
+    - reactのコード整理
+    - railsのBestPracticeの試し
+
+## Version
+- rails version: 7
+- ruby version: 3.0.2(ruby:3.0.2-slim)
+- node: 14.2 (rails default)
+- react: 18.2 
+- swr: 2.2.4
+
+## 参考にしてるサイト
+
+- [rails6 + react + Todolist](https://hackmd.io/KDMj08X7QIqkTcs37rEWBQ?view#React-on-Rails)
+- [Rails + TypeScript + React 開発環境構築](https://qiita.com/Hayato-7812/items/115312f0e6cfaac30c77)
+
 ## 機能紹介
 
 ### TodoList
@@ -34,19 +53,4 @@ docker-compose up
 
 ---
 
-## TODO 
 
-- 機能実装を優先していたため、quailityが落ちている
-    - test Code 作成（RSpec）
-    - reactのコード整理
-    - railsのBestPracticeの試し
-
-## ETC
-- rails version: 7
-- ruby version: 3.0.2
-
-
-## 参考にしてるサイト
-
-- [rails6 + react + Todolist](https://hackmd.io/KDMj08X7QIqkTcs37rEWBQ?view#React-on-Rails)
-- [Rails + TypeScript + React 開発環境構築](https://qiita.com/Hayato-7812/items/115312f0e6cfaac30c77)
